@@ -32,41 +32,36 @@ router.route('/InsertNewUser/')
 
 router.route('/GetUserByMail/:userMail')
 	.get(function(req, res, next) {
-		// res.send("PARAM "+ req.params.userMail);
+		 // res.send("PARAM "+ req.params.userMail);
 
-		 database.collection('USERS', function(err, collection) {
-	        collection.find().toArray(function(err, items) {
-	            res.send(items);
-	        });
-	    });
+	  //   database.collection('USERS').find().limit(1);
 
-	     // database.collection('USERS').find(
-	     // {
-	     //    // USERS_EMAIL : req.params.userMail
-	     // },
-	     // {
-	     //    //  _id : 0,
-	     //    // USR_EMAIL : 1
-	     // }, 
-	     // function(err, item) {
-	     // 	if (err) {
-	     // 		res.send("ERROR "+err);
-	     // 	} else {
-	     // 		// res.send("ITEM "+ item);
-	     // 		res.json(item);
-	     // 	}
-	     //    // var next = function() {
-	     //    //    cursor.nextObject(function(err, item) {
-	     //    //       if (err || !item) {
-	     //    //          return;
-	     //    //       }
-	              
-	     //    //       res.send(item);
-	     //    //       next();
-	     //    //    })
-	     //    // }
-	     //    // next();
-	     // });
+	     database.collection('USERS').findOne(
+	     {
+	        USR_EMAIL : req.params.userMail
+	     },
+	     {
+	         _id : 0,
+	        USR_EMAIL : 1
+	     }
+	     , function(err, item) {
+	     	if (err) {
+	     		res.send("ERROR "+err);
+	     	} else {
+	     		res.json(item);
+
+	     		// var next = function() {
+		      //      	cursor.nextObject(function(err, item) {
+		      //         	if (err || !item)
+		      //            	return;
+		      //         	res.send(item);
+		      //         	next();
+	       //     		})
+	       // 		}
+	       //  	next();
+	     	}
+	        
+	     });
 	})
 
 module.exports = router;
