@@ -6,9 +6,8 @@ router.get('/', function(req, res) {
   res.send('Route Tasks');
 });
 
-router.get('/delete/:id', function(req, res) {
-	console.log(req.params.id);
-
+router.get('/get/:id', function(req, res) {
+	res.send({id:req.params.id, name: "The Name", description: "description"});
   // req.collection.remove({_id: req.collection.id(req.params.id)}, function(e, result){
   //   if (e) return next(e)
   //   res.send((result===1)?{msg:'success'}:{msg:'error'})
