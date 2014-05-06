@@ -17,6 +17,7 @@ var port = process.env.PORT || 3000;
 var db;
 var MongoClient = require('mongodb').MongoClient;
     MongoClient.connect(process.env.CUSTOMCONNSTR_MONGOLAB_URI, function(err, db) {
+        console.log(process.env.CUSTOMCONNSTR_MONGOLAB_URI);
         console.log(err);
         if(err) throw err;
         global.db = db;
