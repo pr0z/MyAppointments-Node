@@ -14,8 +14,6 @@ var app = express();
 
 var port = process.env.PORT || 3000;
 
-var connectionString = process.env.CUSTOMCONNSTR_MONGOLAB_URI;
-mongoose.connect(connectionString);
 var db;
 var MongoClient = require('mongodb').MongoClient;
     MongoClient.connect('mongodb://MongoLab-d4:91U16s8z3R1TcFE7C3vAyBiHortXZg8kQd4IpkWuxIo-@ds030817.mongolab.com:30817/MongoLab-d4', function(err, db) {
