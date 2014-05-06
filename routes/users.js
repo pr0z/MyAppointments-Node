@@ -14,7 +14,7 @@ router.route('/:userId')
 		  }
   
 
-   		db.collection('users').insert(users, function(err, cursor) {});
+   	db.collection('users').insert(users, function(err, cursor) {});
 
  		db.collection('users').find(
    	   {
