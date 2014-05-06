@@ -6,11 +6,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var tasks = require('./routes/tasks');
-var app = express();
-var port = process.env.PORT || 3000;
+var app = express(),
+    port = process.env.PORT || 3000;
 
 //ROUTES
 var routes = require('./routes/index'),
