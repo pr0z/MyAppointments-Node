@@ -9,12 +9,14 @@ app.use(morgan('dev')); 					// log every request to the console
 app.use(bodyParser()); 						// pull information from html in POST
 app.use(methodOverride()); 					// simulate DELETE and PUT
 
-var http = require('http')
 var port = process.env.PORT || 1337;
 
-http.createServer(function(req, res) {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello Azure !\n');
-}).listen(port);
+//Main index
+app.get('', function(req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+  	res.end('Hello Azure with Express !\n');
+});
+
+app.listen(port);
 
 console.log('Go on localhost with port '+port); 	
