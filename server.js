@@ -1,4 +1,3 @@
-// server.js (Express 4.0)
 var express        = require('express');
 var morgan         = require('morgan');
 var bodyParser     = require('body-parser');
@@ -13,9 +12,9 @@ app.use(methodOverride()); 					// simulate DELETE and PUT
 var http = require('http')
 var port = process.env.PORT || 1337;
 
-app(function(req, res) {
+http.createServer(function(req, res) {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Hello Azure !\n');
 }).listen(port);
 
-console.log('Magic happens on port '+port); 	
+console.log('Go on localhost with port '+port); 	

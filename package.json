@@ -1,6 +1,7 @@
 {
   "name": "myappointments-node",
   "main": "server.js",
+  "version": "0.0.1",
   "private": "true",	
   "description" : "website",
   "dependencies": {
