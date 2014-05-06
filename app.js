@@ -1,4 +1,3 @@
-var mongoose = require("mongoose");
 var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -14,9 +13,6 @@ var tasks = require('./routes/tasks');
 var app = express();
 
 var port = process.env.PORT || 3000;
-
-var connectionString = process.env.CUSTOMCONNSTR_MONGOLAB_URI;
-mongoose.connect(connectionString);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
