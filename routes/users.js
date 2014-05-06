@@ -23,37 +23,10 @@ router.route('/InserNewUser/')
 		});
   
 
-   	database.collection('USERS').insert(users, function(err, cursor) {});
+   		res.send('GET Users');	
+   	})
+   	.post(function(req, res, next) {
+   		res.send('POST Users');
+   	});
 
-		res.send('utilisateur enregistré');	
-	})
-	.post(function(req, res, next) {
-		res.send('POST Users');
-	});
-
-   router.route('/GetUserByMail/:userMail')
-      .get(function(req, res, next) {
-         database.collection('USERS').find(
-         {
-            'USERS_EMAIL' : req.params.userMail
-         },
-         {
-             _id : 0,
-            USR_EMAIL : 1
-         }, 
-         function(err, cursor) {
-            var next = function() {
-               cursor.nextObject(function(err, item) {
-                  if (err || !item) {
-                     return;
-                  }
-                  
-                  res.json(item);
-                  next();
-               })
-            }
-            next();
-         });
-   })
-
-module.exports = router;
+   module.exports = router;

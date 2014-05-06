@@ -23,7 +23,6 @@ app.use('/Task', tasks);
 //DATABASE
 var uri = "mongodb://MongoLab-d4:91U16s8z3R1TcFE7C3vAyBiHortXZg8kQd4IpkWuxIo-@ds030817.mongolab.com:30817/MongoLab-d4";
 var MongoClient = require('mongodb').MongoClient;
-
 MongoClient.connect(uri, {
         server: {
             socketOptions: {
@@ -37,9 +36,6 @@ MongoClient.connect(uri, {
             global.database = db;
         }
     });
-    
-    methodOverride = require('method-override'),    
-    MongoClient = require('mongodb').MongoClient;
     
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
