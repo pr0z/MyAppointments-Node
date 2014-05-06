@@ -6,38 +6,20 @@
    	.get(function(req, res, next) {
 
    		users = [];
-   		  for (var i=0;i<10;i++) {
-   		  	users.push({
-   				id : i,
-   				firstname : "julien ["+i+"]"
-   		  	});
-   		  }
+   		users.push({
+            USR_ID = 1,
+            USR_FIRSTNAME = "Roman",
+            USR_LASTNAME = "Leichnig",
+            USR_BIRTHDATE =  "14/05/1991",
+            USR_PASSWORD = "toto",
+            USR_PHONE = "0609880736",
+            USR_CREATION_DATE = "06/05/2014"
+   		});
      
 
       	database.collection('USERS').insert(users, function(err, cursor) {});
 
-    // 		db.collection('users').find(
-    //   	   {
-    //   	   },
-    //   	   {
-      	   	
-    //   	   }, 
-    //   	   function(err, cursor) {   	   
-    //         var next = function() {
-    //         	cursor.nextObject(function(err, item) {
-    //         		if (err || !item) {
-    //         			return;
-    //         		}
-    //         		console.log(item);
-    //         		next();
-    //         	})
-
-    //         }
-       //         next();
-
-   	// });
-
-   		res.send('GET Users');	
+   		res.send('utilisateur enregistré');	
    	})
    	.post(function(req, res, next) {
    		res.send('POST Users');
