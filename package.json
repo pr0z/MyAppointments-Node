@@ -1,17 +1,25 @@
 {
   "name": "myappointments-node",
-  "main": "server.js",
   "version": "0.0.1",
-  "private": "true",	
+  "main": "app.js",
+  "private": true,
   "description" : "website",
+  "scripts": {
+    "start": "./node_modules/.bin/supervisor app.js"
+  },
   "dependencies": {
+    "supervisor": "*",
     "express": "~4.0.0",
+    "static-favicon": "~1.0.0",
     "morgan": "~1.0.0",
+    "method-override": "~1.0.0",
+    "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.0",
-    "method-override": "~1.0.0"
+    "debug": "~0.7.4",
+    "jade": "~1.3.0"
   },
   "repository" : { 
-   "type" : "git",
-   "url" : "http://github.com/npm/npm.git"
-  }	
+    "type" : "git",
+    "url" : "http://github.com/npm/npm.git"
+  } 
 }
