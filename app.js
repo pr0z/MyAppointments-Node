@@ -1,27 +1,33 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+var express = require('express'),
+    path = require('path'),
+    favicon = require('static-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    methodOverride = require('method-override');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var tasks = require('./routes/tasks');
-
 var app = express();
-
 var port = process.env.PORT || 3000;
 
-var db;
+var uri = "mongodb://MongoLab-d4:91U16s8z3R1TcFE7C3vAyBiHortXZg8kQd4IpkWuxIo-@ds030817.mongolab.com:30817/MongoLab-d4";
 var MongoClient = require('mongodb').MongoClient;
-    MongoClient.connect(process.env.CUSTOMCONNSTR_MONGOLAB_URI, function(err, db) {
-        console.log(process.env.CUSTOMCONNSTR_MONGOLAB_URI);
-        console.log(err);
-        if(err) throw err;
-        global.db = db;
-  });   
+
+MongoClient.connect(uri, {
+        server: {
+            socketOptions: {
+                connectTimeoutMS: 3000
+            }
+        },
+    }, function (err, db) {
+        if (err) {
+            console.log('error: ', err);
+        } else {
+            global.database = db;
+        }
+    });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,15 +49,10 @@ app.use('/Task', tasks);
 // Make our db accessible to our router
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
-    req.db = global.db;
-
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
-
-
-
 
 /// error handlers
 

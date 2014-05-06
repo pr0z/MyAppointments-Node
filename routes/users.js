@@ -1,46 +1,46 @@
-var express = require('express');
-var router = express.Router();
+   var express = require('express');
+   var router = express.Router();
 
-/* GET users listing. */
-router.route('/:userId')
-	.get(function(req, res, next) {
-		var db = req.db;
-		users = [];
-		  for (var i=0;i<10;i++) {
-		  	users.push({
-				id : i,
-				firstname : "julien ["+i+"]"
-		  	});
-		  }
-  
+   /* GET users listing. */
+   router.route('/:userId')
+   	.get(function(req, res, next) {
 
-   	db.collection('users').insert(users, function(err, cursor) {});
+   		users = [];
+   		  for (var i=0;i<10;i++) {
+   		  	users.push({
+   				id : i,
+   				firstname : "julien ["+i+"]"
+   		  	});
+   		  }
+     
 
- 		db.collection('users').find(
-   	   {
-   	   },
-   	   {
-   	   	
-   	   }, 
-   	   function(err, cursor) {   	   
-         var next = function() {
-         	cursor.nextObject(function(err, item) {
-         		if (err || !item) {
-         			return;
-         		}
-         		console.log(item);
-         		next();
-         	})
+      	database.collection('USERS').insert(users, function(err, cursor) {});
 
-         }
-         next();
+    // 		db.collection('users').find(
+    //   	   {
+    //   	   },
+    //   	   {
+      	   	
+    //   	   }, 
+    //   	   function(err, cursor) {   	   
+    //         var next = function() {
+    //         	cursor.nextObject(function(err, item) {
+    //         		if (err || !item) {
+    //         			return;
+    //         		}
+    //         		console.log(item);
+    //         		next();
+    //         	})
 
-	});
+    //         }
+       //         next();
 
-		res.send('GET Users');	
-	})
-	.post(function(req, res, next) {
-		res.send('POST Users');
-	});
+   	// });
 
-module.exports = router;
+   		res.send('GET Users');	
+   	})
+   	.post(function(req, res, next) {
+   		res.send('POST Users');
+   	});
+
+   module.exports = router;
