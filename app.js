@@ -27,8 +27,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));     // set the static files location /public/img will be /img for users
 
 app.use('/', routes);
-app.use('/users', users);
-app.use('/tasks', tasks);
+app.use('/Users', users);
+app.use('/Task', tasks);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
