@@ -17,9 +17,10 @@ global.config = require('./config.js');
 var routes = require('./routes/index'),
     users = require('./routes/users'),
     tasks = require('./routes/tasks');
-app.use('/', routes);
-app.use('/Users', users);
-app.use('/Task', tasks);
+    
+    app.use('/', routes);
+    app.use('/Users', users);
+    app.use('/Task', tasks);
 
 
 async.parallel([function (cb) {
