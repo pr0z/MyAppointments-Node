@@ -30,8 +30,8 @@ router.route('/InsertNewUser/')
 		res.send('POST Users');
 	});
 
-router.route('/GetUserByMail/:userMail')
-	.get(function(req, res, next) {
+	router.route('/GetUserByMail/:userMail')
+		.get(function(req, res, next) {
 		 // res.send("PARAM "+ req.params.userMail);
 
 	  //   database.collection('USERS').find().limit(1);
@@ -50,6 +50,8 @@ router.route('/GetUserByMail/:userMail')
 	     	} else {
 	     		res.json(item);
 
+
+	     	//tooto
 	     		// var next = function() {
 		      //      	cursor.nextObject(function(err, item) {
 		      //         	if (err || !item)
