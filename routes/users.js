@@ -50,8 +50,6 @@ router.route('/InsertNewUser/')
 	     	} else {
 	     		res.json(item);
 
-
-	     	//tooto
 	     		// var next = function() {
 		      //      	cursor.nextObject(function(err, item) {
 		      //         	if (err || !item)
@@ -64,6 +62,21 @@ router.route('/InsertNewUser/')
 	     	}
 	        
 	     });
+	})
+
+router.route('/RegisterUser')
+	.post(function(req, res, next) {
+		 
+	})
+
+router.route('/UpdateUser')
+	.post(function(req, res, next) {
+		 
+	})
+
+router.route('/DeleteUser')
+	.post(function(req, res, next) {
+		 
 	})
 
 module.exports = router;
