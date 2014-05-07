@@ -6,6 +6,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     async = require("async");
+    MongoClient = require('mongodb').MongoClient;
 
 var app = express(),
     port = process.env.PORT || 3000;
@@ -20,8 +21,34 @@ app.use('/', routes);
 app.use('/Users', users);
 app.use('/Task', tasks);
 
+
+async.parallel([function (cb) {
+    MongoClient.connect(config.mongo.host, {
+        server: {
+            socketOptions: {
+                connectTimeoutMS: 3000
+            }
+        },
+    }, function (err, db) {
+        if (err) {
+            console.log('error: ', err);
+        } else {
+            global.database = db;
+            cb(null);
+        }
+    }),
+    function (cb){
+        cb(null);
+    }
+}],
+    function (){
+        app.launch();
+        app.listen(port);
+        console.log('Go on localhost:'+port+'...'); 
+    }
+);
+
 //DATABASE
-var MongoClient = require('mongodb').MongoClient;
 MongoClient.connect(config.mongo.host, {
         server: {
             socketOptions: {
@@ -80,8 +107,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
-app.listen(port);
-console.log('Go on localhost:'+port+'...'); 
 
 module.exports = app;
