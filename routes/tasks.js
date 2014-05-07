@@ -22,9 +22,10 @@ router.route('/GetTasksHistory/:userId')
 
 router.route('/GetTasksForUserId/:userId')
 	.get(function(req, res, next){
+		console.log(req.params.userId);
 		database.collection('TASK').find(
 			{
-				IdUser : 1
+				IdUser : +req.params.userId
 			},
 			{
 				_id : 0
@@ -39,7 +40,20 @@ router.route('/GetTasksForUserId/:userId')
 
 router.route('/SyncrhonizeTasksForUserId/:userId/:maxTaskId')
 	.get(function(req, res, next) {
-		 
+		 database.collection('TASK').find(
+			{
+				Id : { $gte : +req.params.maxTaskId },
+				IdUser : +req.params.userId
+			},
+			{
+				_id : 0
+			}
+		).toArray(function(err, results){
+			if (err)
+				res.send("ERR : nodata");
+
+			res.send(results);
+		});
 	})
 
 router.route('/RegisterTask')
