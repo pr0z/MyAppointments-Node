@@ -10,8 +10,21 @@ var express = require('express'),
 
 var app = express(),
     port = process.env.PORT || 3000;
-    
+ 
 global.config = require('./config.js');
+
+//SETTINGS
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');                  
+
+app.use(favicon());
+app.use(logger('dev'));                         // log every request to the console
+app.use(bodyParser);  
+// app.use(bodyParser.json());                    // pull information from html in POST
+// app.use(bodyParser.urlencoded());
+app.use(methodOverride());                      // simulate DELETE and PUT
+// app.use(express.urlencoded());
+app.use(express.static(path.join(__dirname, 'public')));     // set the static files location /public/img will be /img for users
 
 //ROUTES
 var routes = require('./routes/index'),
@@ -62,18 +75,6 @@ async.parallel([function (cb) {
 //             global.database = db;
 //         }
 //     });
-    
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');                  
-
-app.use(favicon());
-app.use(logger('dev'));                         // log every request to the console
-app.use(bodyParser.json());                     // pull information from html in POST
-app.use(methodOverride());                      // simulate DELETE and PUT
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));     // set the static files location /public/img will be /img for users
 
 
 
