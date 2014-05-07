@@ -8,17 +8,7 @@ router.route('/')
 	})
 	.post(function(req, res, next) {
 		res.send('POST Tasks');
-	});	
-
-router.route('/GetTasksForthcoming/:userId')
-	.get(function(req, res, next) {
-		res.send({id:req.params.userId, name: "The Name", description: "description"});
-	})
-
-router.route('/GetTasksHistory/:userId')
-	.get(function(req, res, next) {
-		 
-	})
+	});
 
 router.route('/GetTasksForUserId/:userId')
 	.get(function(req, res, next){
