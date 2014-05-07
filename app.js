@@ -18,9 +18,15 @@ var routes = require('./routes/index'),
     users = require('./routes/users'),
     tasks = require('./routes/tasks');
     
-    app.use('/', routes);
-    app.use('/Users', users);
-    app.use('/Task', tasks);
+app.use('/', routes);
+app.use('/Users', users);
+app.use('/Task', tasks);
+
+app.use(bodyParser.json());                     // pull information from html in POST
+app.use(methodOverride());                      // simulate DELETE and PUT
+app.use(bodyParser.urlencoded());
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));     // set the static files location /public/img will be /img for users
 
 
 async.parallel([function (cb) {
@@ -48,33 +54,12 @@ async.parallel([function (cb) {
     }
 );
 
-//DATABASE
-// MongoClient.connect(config.mongo.host, {
-//         server: {
-//             socketOptions: {
-//                 connectTimeoutMS: 3000
-//             }
-//         },
-//     }, function (err, db) {
-//         if (err) {
-//             console.log('error: ', err);
-//         } else {
-//             global.database = db;
-//         }
-//     });
-    
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');                  
 
 app.use(favicon());
 app.use(logger('dev'));                         // log every request to the console
-app.use(bodyParser.json());                     // pull information from html in POST
-app.use(methodOverride());                      // simulate DELETE and PUT
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));     // set the static files location /public/img will be /img for users
-
 
 
 // Make our db accessible to our router

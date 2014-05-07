@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var router = express.Router();
 
 router.route('/')
@@ -59,13 +60,13 @@ router.route('/InsertNewUser/')
 	})
 
 router.route('/RegisterUser')
-	.post(function(req, res, next) {
-		 
+	.all(function(req, res, next) {
+		console.log(next);
+		res.send("toto");
 	})
 
 router.route('/UpdateUser')
-	.post(function(req, res, next) {
-		 
+	.get(function(req, res, next) {
 	})
 
 router.route('/DeleteUser')

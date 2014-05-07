@@ -1,5 +1,9 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+ form(method="POST", action="/")
+  input(type="hidden", name="_method", value="PUT")
+  p Name
+   input(type="text", name="name")
+  p
+   input(type="submit")
