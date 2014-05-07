@@ -21,8 +21,13 @@ router.route('/InsertNewUser/')
          	Phone : "0609880736",
          	CreationDate : "06/05/2014"
 		});
- 
-   		database.collection('USERS').insert(users, function(err, cursor) {});
+
+		console.log(database);
+
+   		database.collection('USERS').insert(users, function(err, cursor) {
+   			if(err)
+   				console.log(err);
+   		});
 
 		res.send('Utilisateur enregistré');	
 	})
