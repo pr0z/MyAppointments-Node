@@ -15,11 +15,11 @@ router.route('/InsertNewUser/')
          	Id : 1,
          	FirstName : "Roman",
          	LastName : "Leichnig",
-         	BirthDate :  "14/05/1991",
+         	BirthDate :  new Date("1991", "05", "14");
          	Email : "roman.leichnig@gmail.com",
          	Password : "toto",
          	Phone : "0609880736",
-         	CreationDate : "06/05/2014"
+         	CreationDate : new Date()
 		});
 
 		console.log(database);
