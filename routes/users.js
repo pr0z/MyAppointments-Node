@@ -12,14 +12,14 @@ router.route('/InsertNewUser/')
 
 		users = [];
 		users.push({
-         	USR_ID : 1,
-         	USR_FIRSTNAME : "Roman",
-         	USR_LASTNAME : "Leichnig",
-         	USR_BIRTHDATE :  "14/05/1991",
-         	USR_EMAIL : "roman.leichnig@gmail.com",
-         	USR_PASSWORD : "toto",
-         	USR_PHONE : "0609880736",
-         	USR_CREATION_DATE : "06/05/2014"
+         	Id : 1,
+         	FirstName : "Roman",
+         	LastName : "Leichnig",
+         	BirthDate :  "14/05/1991",
+         	Email : "roman.leichnig@gmail.com",
+         	Password : "toto",
+         	Phone : "0609880736",
+         	CreationDate : "06/05/2014"
 		});
  
    		database.collection('USERS').insert(users, function(err, cursor) {});
@@ -38,7 +38,7 @@ router.route('/InsertNewUser/')
 
 	     database.collection('USERS').findOne(
 	     {
-	        USR_EMAIL : req.params.userMail
+	        Email : req.params.userMail
 	     },
 	     {
 	         _id : 0,
