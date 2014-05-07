@@ -32,7 +32,7 @@ router.route('/SyncrhonizeTasksForUserId/:userId/:maxTaskId')
 	.get(function(req, res, next) {
 		 database.collection('TASK').find(
 			{
-				Id : { $gte : +req.params.maxTaskId },
+				Id : { $gt : +req.params.maxTaskId },
 				IdUser : +req.params.userId
 			},
 			{
