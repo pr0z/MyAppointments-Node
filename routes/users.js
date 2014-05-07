@@ -15,7 +15,7 @@ router.route('/InsertNewUser/')
          	Id : 1,
          	FirstName : "Roman",
          	LastName : "Leichnig",
-         	BirthDate :  new Date(1991, 05, 14),
+         	BirthDate :  new Date(1991, 5, 14),
          	Email : "roman.leichnig@gmail.com",
          	Password : "toto",
          	Phone : "0609880736",
