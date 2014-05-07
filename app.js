@@ -42,26 +42,25 @@ async.parallel([function (cb) {
     }
 }],
     function (){
-        app.launch();
         app.listen(port);
         console.log('Go on localhost:'+port+'...'); 
     }
 );
 
 //DATABASE
-MongoClient.connect(config.mongo.host, {
-        server: {
-            socketOptions: {
-                connectTimeoutMS: 3000
-            }
-        },
-    }, function (err, db) {
-        if (err) {
-            console.log('error: ', err);
-        } else {
-            global.database = db;
-        }
-    });
+// MongoClient.connect(config.mongo.host, {
+//         server: {
+//             socketOptions: {
+//                 connectTimeoutMS: 3000
+//             }
+//         },
+//     }, function (err, db) {
+//         if (err) {
+//             console.log('error: ', err);
+//         } else {
+//             global.database = db;
+//         }
+//     });
     
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

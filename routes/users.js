@@ -41,24 +41,13 @@ router.route('/InsertNewUser/')
 	        Email : req.params.userMail
 	     },
 	     {
-	         _id : 0,
-	        USR_EMAIL : 1
+	         _id : 0
 	     }
 	     , function(err, item) {
 	     	if (err) {
 	     		res.send("ERROR "+err);
 	     	} else {
 	     		res.json(item);
-
-	     		// var next = function() {
-		      //      	cursor.nextObject(function(err, item) {
-		      //         	if (err || !item)
-		      //            	return;
-		      //         	res.send(item);
-		      //         	next();
-	       //     		})
-	       // 		}
-	       //  	next();
 	     	}
 	        
 	     });
