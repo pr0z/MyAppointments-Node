@@ -1,8 +1,7 @@
 extends layout
 
 block content
- form(method="POST", action="/")
-  input(type="hidden", name="_method", value="PUT")
+ form(method="post", action="/Task/AddNewTask/")
   p Name
    input(type="text", name="name")
   p

@@ -1,6 +1,4 @@
 var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/users')
   , http = require('http')
   , path = require('path')
   , async = require("async")
@@ -32,21 +30,68 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-
 //Routes
 app.get('/', function(req, res){
-  res.send("Hello World");
+  res.render('index');
 });
 
-app.get('/task/new', function(req, res) {
-  res.send("New task");
-});
+app.get('/Users/GetUserByMail/:userMail', function(req, res, next) {
 
-//save new employee
-app.post('/employee/new', function(req, res){
-  res.sen("post task");
-});
+  database.collection('USERS').findOne(
+  {
+    Email : req.params.userMail
+  },
+  {
+    _id : 0
+  }
+  , function(err, item) {
+      if (err) {
+        res.send("ERROR "+err);
+    } else {
+      res.json(item);
+    }        
+  });
+})
 
+app.get('/Task/GetTasksForUserId/:userId', function(req, res, next){
+   console.log(req.params.userId);
+   database.collection('TASK').find(
+     {
+       IdUser : +req.params.userId
+     },
+     {
+       _id : 0
+     }
+   ).toArray(function(err, results){
+     if (err)
+       res.send("ERR : nodata");
+
+     res.send(results);
+   });
+ })
+
+app.get('/Task/SynchronizeTasksForUserId/:userId/:maxTaskId', function(req, res, next) {
+    database.collection('TASK').find(
+     {
+       Id : { $gt : +req.params.maxTaskId },
+       IdUser : +req.params.userId
+     },
+     {
+       _id : 0
+     }
+    ).toArray(function(err, results){
+     if (err)
+       res.send("ERR : nodata");
+
+     res.send(results);
+   });
+ })
+
+app.post('/Task/AddNewTask/', function(req, res, next){
+  res.send(req.param('name'));
+})
+
+//Asynchronous db connection
 async.parallel([function (cb) {
     MongoClient.connect(config.mongo.host, {
         server: {
