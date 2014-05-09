@@ -48,6 +48,7 @@ app.get('/Users/GetUserByMail/:userMail', function(req, res, next) {
       if (err) {
         res.send("ERROR "+err);
     } else {
+      console.log("get user by mail");
       res.json(item);
     }        
   });
@@ -70,7 +71,7 @@ app.get('/Task/GetTasksForUserId/:userId', function(req, res, next){
    });
  })
 
-app.get('/Task/SynchronizeTasksForUserId/:userId/:maxTaskId', function(req, res, next) {
+app.get('/Task/SyncrhonizeTasksForUserId/:userId/:maxTaskId', function(req, res, next) {
     database.collection('TASK').find(
      {
        Id : { $gt : +req.params.maxTaskId },
@@ -87,9 +88,61 @@ app.get('/Task/SynchronizeTasksForUserId/:userId/:maxTaskId', function(req, res,
    });
  })
 
-app.post('/Task/AddNewTask/', function(req, res, next){
-  res.send(req.param('name'));
+app.post('/Task/RegisterTask/', function(req, res, next){
+    var json = req.body;
+    var options = { "sort": [['Id','desc']] };
+    var maxId = 0;
+    async.parallel([
+        function (cb) {
+          database.collection('TASK').findOne({}, options , function(err, doc) {
+           if (err)
+              console.log(err);
+
+            maxId = +doc.Id;
+            cb(null);
+        }),
+        function (cb){
+            cb(null);
+        }
+    }],
+        function(){
+            maxId++;
+            json.Id = maxId;
+            console.log(json);
+
+            database.collection('TASK').insert(json, function(err, cursor){
+                if (err)
+                    console.log(err);
+            });
+
+            console.log(json);
+            res.json(json);
+        }
+    );
 })
+
+app.get('/Users/InsertNewUser/', function(req, res, next) {
+        users = [];
+        users.push({
+            Id : 1,
+            FirstName : "leichnig",
+            LastName : "roman",
+            BirthDate :  new Date(1991, 05, 14),
+            Email : "roman.leichnig@gmail.com",
+            Password : "toto",
+            Phone : "0609880736",
+            CreationDate : new Date()
+        });
+
+        console.log(database);
+
+        database.collection('USERS').insert(users, function(err, cursor) {
+            if(err)
+                console.log(err);
+        });
+
+        res.send('Utilisateur enregistré'); 
+    })
 
 //Asynchronous db connection
 async.parallel([function (cb) {
