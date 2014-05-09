@@ -65,16 +65,18 @@ module.exports = function(app){
 	        function(){
 	            maxId++;
 	            json.Id = maxId;
+	            var dateofbirth = new Date(json.dateofbirth);
+	           	var date = new Date(new Date(dateofbirth).setMonth(dateofbirth.getMonth()+1));
 
 	            database.collection('USERS').insert(
 	            {
 	            	Id : maxId,
-	            	FirstName : req.body.firstname,
-		            LastName : req.body.lastname,
-		            BirthDate :  req.body.dateofbirth,
-		            Email : req.body.mel,
-		            Password : req.body.pass,
-		            Phone : req.body.phone,
+	            	FirstName : json.firstname,
+		            LastName : json.lastname,
+		            BirthDate :  date,
+		            Email : json.mel,
+		            Password : json.pass,
+		            Phone : json.phone,
 		            CreationDate : new Date()
 	            }, function(err, cursor){
 	                if (err)
