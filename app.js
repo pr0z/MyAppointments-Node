@@ -35,6 +35,8 @@ require('./routes')(app);
 require('./routes/tasks')(app);
 require('./routes/users')(app);
 
+
+
 //Asynchronous db connection
 async.parallel([function (cb) {
     MongoClient.connect(config.mongo.host, {
