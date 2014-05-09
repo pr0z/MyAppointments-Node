@@ -1,0 +1,36 @@
+extends layout
+
+block content
+	img(src='/images/logo.png', name='logo')
+	form(method="POST", action="/Users/RegisterUser/")
+		div(id="form")
+			table
+				tr
+					td	Nom
+					td
+						input(type='text', name='firstname')
+				tr
+					td	Prénom
+					td
+						input(type='text', name='lastname')
+				tr
+					td	Date de Naissance
+					td
+						input(type='text', name='dateofbirth')
+				tr
+					td	E-mail
+					td
+						input(type='text', name='mel')
+				tr
+					td	Téléphone
+					td
+						input(type='text', name='phone')
+				tr
+					td	Mot de passe
+					td
+						input(type='password', name='pass')
+
+			br
+			br
+			input(type="reset",value="Effacer", class="btn_sub")
+			input(type="submit",value="Valider", class="btn_sub")
